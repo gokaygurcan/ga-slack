@@ -68,6 +68,6 @@ jobs:
         # SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       with:
-        payload: '{"text":{"Hello, ${{ github.ref }}"}}'
+        payload: "{\"text\":{\"Hello, ${{ github.ref }}\"}}"
         # channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
         # slack-message: 'Hello from GitHub Actions!'
