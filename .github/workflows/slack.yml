@@ -61,11 +61,6 @@ jobs:
         pwd
         ls -lah .
 
-    - id: prepare
-      name: Prepare
-      run: |
-        echo "::set-output name=payload::{\"channel\": \"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\": \"New Paid Time Off request from Fred Enriquez\",\"blocks\": [{\"type\": \"header\",\"text\": {\"type\": \"plain_text\",\"text\": \"New request\"}},{\"type\": \"section\",\"fields\": [{\"type\": \"mrkdwn\",\"text\": \"*Type:*\nPaid Time Off\"},{\"type\": \"mrkdwn\",\"text\": \"*Created by:*\n<example.com|Fred Enriquez>\"}]},{\"type\": \"section\",\"fields\": [{\"type\": \"mrkdwn\",\"text\": \"*When:*\nAug 10 - Aug 13\"}]},{\"type\": \"section\",\"text\": {\"type\": \"mrkdwn\",\"text\": \"<https://example.com|View request>\"}}]}"
-
     - id: slack
       name: Slack
       uses: slackapi/slack-github-action@v1.15.0
@@ -73,6 +68,6 @@ jobs:
         # SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       with:
-        payload: ${{ needs.prepare.outputs.payload }}
+        payload: '{"text":{"Hello, ${{ github.ref }}"}}'
         # channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
-        # slack-message: ${{ needs.prepare.outputs.payload }}
+        # slack-message: 'Hello from GitHub Actions!'
