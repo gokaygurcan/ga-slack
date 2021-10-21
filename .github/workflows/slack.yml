@@ -73,5 +73,5 @@ jobs:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       with:
         payload: ${{ needs.prepare.outputs.payload }}
-        # channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
         # slack-message: 'Hello from GitHub Actions!'
