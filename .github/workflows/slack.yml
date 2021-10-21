@@ -70,7 +70,7 @@ jobs:
       name: Slack
       uses: slackapi/slack-github-action@v1.15.0
       env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        # SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       with:
         payload: ${{ needs.prepare.outputs.payload }}
