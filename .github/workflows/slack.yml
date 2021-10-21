@@ -62,9 +62,9 @@ jobs:
         ls -lah .
 
     - id: prepare
-      name: prepare
+      name: Prepare
       run: |
-        run: echo "::set-output name=payload::{\"channel\": \"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\": \"New Paid Time Off request from Fred Enriquez\",\"blocks\": [{\"type\": \"header\",\"text\": {\"type\": \"plain_text\",\"text\": \"New request\"}},{\"type\": \"section\",\"fields\": [{\"type\": \"mrkdwn\",\"text\": \"*Type:*\nPaid Time Off\"},{\"type\": \"mrkdwn\",\"text\": \"*Created by:*\n<example.com|Fred Enriquez>\"}]},{\"type\": \"section\",\"fields\": [{\"type\": \"mrkdwn\",\"text\": \"*When:*\nAug 10 - Aug 13\"}]},{\"type\": \"section\",\"text\": {\"type\": \"mrkdwn\",\"text\": \"<https://example.com|View request>\"}}]}"
+        echo "::set-output name=payload::{\"channel\": \"${{ secrets.SLACK_CHANNEL_ID }}\",\"text\": \"New Paid Time Off request from Fred Enriquez\",\"blocks\": [{\"type\": \"header\",\"text\": {\"type\": \"plain_text\",\"text\": \"New request\"}},{\"type\": \"section\",\"fields\": [{\"type\": \"mrkdwn\",\"text\": \"*Type:*\nPaid Time Off\"},{\"type\": \"mrkdwn\",\"text\": \"*Created by:*\n<example.com|Fred Enriquez>\"}]},{\"type\": \"section\",\"fields\": [{\"type\": \"mrkdwn\",\"text\": \"*When:*\nAug 10 - Aug 13\"}]},{\"type\": \"section\",\"text\": {\"type\": \"mrkdwn\",\"text\": \"<https://example.com|View request>\"}}]}"
 
     - id: slack
       name: Slack
