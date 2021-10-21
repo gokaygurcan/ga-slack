@@ -1,0 +1,71 @@
+name: Slack
+
+on:
+  release:
+    types:
+      - prereleased
+      - released
+
+env:
+  NODE_VERSION: '14.x'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  slack:
+    name: Slack
+    runs-on: ubuntu-latest
+    if: |
+      (github.event_name == 'release')
+    steps:
+    - id: setup-node
+      name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - id: checkout
+      name: Checkout
+      uses: actions/checkout@v2
+
+    - id: sanity-check
+      name: Sanity check
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+        JOB_CONTEXT: ${{ toJson(job) }}
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+        RUNNER_CONTEXT: ${{ toJson(runner) }}
+        STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        MATRIX_CONTEXT: ${{ toJson(matrix) }}
+      run: |
+        printenv
+        echo "$PATH"
+        echo "$GITHUB_CONTEXT"
+        echo "$JOB_CONTEXT"
+        echo "$STEPS_CONTEXT"
+        echo "$RUNNER_CONTEXT"
+        echo "$STRATEGY_CONTEXT"
+        echo "$MATRIX_CONTEXT"
+        which node
+        node --version
+        which npm
+        npm --version
+        which grunt
+        grunt --version
+        which make
+        make --version
+        which jq
+        jq --version
+        pwd
+        ls -lah .
+
+    - id: slack
+      name: Slack
+      uses: slackapi/slack-github-action@v1.15.0
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      with:
+        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+        slack-message: 'Hello from GitHub Actions!'
